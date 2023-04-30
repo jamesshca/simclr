@@ -1,1 +1,9 @@
-
+imutils=0.5.4
+jupyter=1.0.0
+matplotlib=3.7.0
+numpy>=1.17.3
+python=3.9.13
+pytorch_lightning=2.0.2
+scikit-learn=1.2.2
+torch=1.13.1
+torchvision=0.14.1
