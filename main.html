@@ -14578,11 +14578,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">imutils</span> <span class="kn">import</span> <span class="n">paths</span>
-<span class="kn">from</span> <span class="nn">pytorch_lightning.callbacks</span> <span class="kn">import</span> <span class="n">LearningRateMonitor</span><span class="p">,</span> <span class="n">ModelCheckpoint</span>
 <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">models</span>
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">Dataset</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -14594,6 +14593,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.callbacks</span> <span class="kn">import</span> <span class="n">LearningRateMonitor</span><span class="p">,</span> <span class="n">ModelCheckpoint</span><span class="p">,</span> <span class="n">GradientAccumulationScheduler</span>
 <span class="c1"># Torch</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torchvision</span>
@@ -14613,7 +14613,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATASET_PATH</span> <span class="o">=</span> <span class="s1">'./data'</span>
@@ -14623,7 +14623,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="n">NUM_WORKERS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 
 <span class="c1"># Ensure that all operations are deterministic on GPU (if used) for reproducibility</span>
-<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">deterministic</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">deterministic</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># check if CUDA is available</span>
@@ -14673,7 +14673,7 @@ Number of workers: 24
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Download Caltech101 dataset</span>
@@ -14698,48 +14698,8 @@ Number of workers: 24
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>0it [00:00, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Extracting ./data/caltech101\101_ObjectCategories.tar.gz to ./data/caltech101
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>0it [00:00, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Extracting ./data/caltech101\Annotations.tar to ./data/caltech101
+<pre>Files already downloaded and verified
 </pre>
 </div>
 </div>
@@ -14753,7 +14713,7 @@ Number of workers: 24
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_paths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">list_images</span><span class="p">(</span><span class="n">DATASET_PATH</span><span class="p">))</span>
@@ -14786,7 +14746,7 @@ Number of workers: 24
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># One hot encode</span>
@@ -14828,7 +14788,7 @@ Number of workers: 24
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Divide the data into train (60%), validation (20%), and test (20%) set</span>
@@ -14872,7 +14832,7 @@ x_test examples: (1736,)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Custom image dataset</span>
@@ -14907,7 +14867,7 @@ x_test examples: (1736,)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Custom transformation</span>
@@ -14931,7 +14891,7 @@ x_test examples: (1736,)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define transforms</span>
@@ -14964,7 +14924,7 @@ x_test examples: (1736,)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">ImageDataset</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">(</span><span class="n">train_transforms</span><span class="p">))</span>
@@ -14977,12 +14937,12 @@ x_test examples: (1736,)
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -14993,8 +14953,6 @@ x_test examples: (1736,)
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'class_to_label.json'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">class_to_label</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="n">class_to_label</span>
 </pre></div>
 
      </div>
@@ -15002,137 +14960,12 @@ x_test examples: (1736,)
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;1&#39;: &#39;Faces&#39;,
- &#39;2&#39;: &#39;Faces_easy&#39;,
- &#39;3&#39;: &#39;Leopards&#39;,
- &#39;4&#39;: &#39;Motorbikes&#39;,
- &#39;5&#39;: &#39;accordion&#39;,
- &#39;6&#39;: &#39;airplanes&#39;,
- &#39;7&#39;: &#39;anchor&#39;,
- &#39;8&#39;: &#39;ant&#39;,
- &#39;9&#39;: &#39;barrel&#39;,
- &#39;10&#39;: &#39;bass&#39;,
- &#39;11&#39;: &#39;beaver&#39;,
- &#39;12&#39;: &#39;binocular&#39;,
- &#39;13&#39;: &#39;bonsai&#39;,
- &#39;14&#39;: &#39;brain&#39;,
- &#39;15&#39;: &#39;brontosaurus&#39;,
- &#39;16&#39;: &#39;buddha&#39;,
- &#39;17&#39;: &#39;butterfly&#39;,
- &#39;18&#39;: &#39;camera&#39;,
- &#39;19&#39;: &#39;cannon&#39;,
- &#39;20&#39;: &#39;car_side&#39;,
- &#39;21&#39;: &#39;ceiling_fan&#39;,
- &#39;22&#39;: &#39;cellphone&#39;,
- &#39;23&#39;: &#39;chair&#39;,
- &#39;24&#39;: &#39;chandelier&#39;,
- &#39;25&#39;: &#39;cougar_body&#39;,
- &#39;26&#39;: &#39;cougar_face&#39;,
- &#39;27&#39;: &#39;crab&#39;,
- &#39;28&#39;: &#39;crayfish&#39;,
- &#39;29&#39;: &#39;crocodile&#39;,
- &#39;30&#39;: &#39;crocodile_head&#39;,
- &#39;31&#39;: &#39;cup&#39;,
- &#39;32&#39;: &#39;dalmatian&#39;,
- &#39;33&#39;: &#39;dollar_bill&#39;,
- &#39;34&#39;: &#39;dolphin&#39;,
- &#39;35&#39;: &#39;dragonfly&#39;,
- &#39;36&#39;: &#39;electric_guitar&#39;,
- &#39;37&#39;: &#39;elephant&#39;,
- &#39;38&#39;: &#39;emu&#39;,
- &#39;39&#39;: &#39;euphonium&#39;,
- &#39;40&#39;: &#39;ewer&#39;,
- &#39;41&#39;: &#39;ferry&#39;,
- &#39;42&#39;: &#39;flamingo&#39;,
- &#39;43&#39;: &#39;flamingo_head&#39;,
- &#39;44&#39;: &#39;garfield&#39;,
- &#39;45&#39;: &#39;gerenuk&#39;,
- &#39;46&#39;: &#39;gramophone&#39;,
- &#39;47&#39;: &#39;grand_piano&#39;,
- &#39;48&#39;: &#39;hawksbill&#39;,
- &#39;49&#39;: &#39;headphone&#39;,
- &#39;50&#39;: &#39;hedgehog&#39;,
- &#39;51&#39;: &#39;helicopter&#39;,
- &#39;52&#39;: &#39;ibis&#39;,
- &#39;53&#39;: &#39;inline_skate&#39;,
- &#39;54&#39;: &#39;joshua_tree&#39;,
- &#39;55&#39;: &#39;kangaroo&#39;,
- &#39;56&#39;: &#39;ketch&#39;,
- &#39;57&#39;: &#39;lamp&#39;,
- &#39;58&#39;: &#39;laptop&#39;,
- &#39;59&#39;: &#39;llama&#39;,
- &#39;60&#39;: &#39;lobster&#39;,
- &#39;61&#39;: &#39;lotus&#39;,
- &#39;62&#39;: &#39;mandolin&#39;,
- &#39;63&#39;: &#39;mayfly&#39;,
- &#39;64&#39;: &#39;menorah&#39;,
- &#39;65&#39;: &#39;metronome&#39;,
- &#39;66&#39;: &#39;minaret&#39;,
- &#39;67&#39;: &#39;nautilus&#39;,
- &#39;68&#39;: &#39;octopus&#39;,
- &#39;69&#39;: &#39;okapi&#39;,
- &#39;70&#39;: &#39;pagoda&#39;,
- &#39;71&#39;: &#39;panda&#39;,
- &#39;72&#39;: &#39;pigeon&#39;,
- &#39;73&#39;: &#39;pizza&#39;,
- &#39;74&#39;: &#39;platypus&#39;,
- &#39;75&#39;: &#39;pyramid&#39;,
- &#39;76&#39;: &#39;revolver&#39;,
- &#39;77&#39;: &#39;rhino&#39;,
- &#39;78&#39;: &#39;rooster&#39;,
- &#39;79&#39;: &#39;saxophone&#39;,
- &#39;80&#39;: &#39;schooner&#39;,
- &#39;81&#39;: &#39;scissors&#39;,
- &#39;82&#39;: &#39;scorpion&#39;,
- &#39;83&#39;: &#39;sea_horse&#39;,
- &#39;84&#39;: &#39;snoopy&#39;,
- &#39;85&#39;: &#39;soccer_ball&#39;,
- &#39;86&#39;: &#39;stapler&#39;,
- &#39;87&#39;: &#39;starfish&#39;,
- &#39;88&#39;: &#39;stegosaurus&#39;,
- &#39;89&#39;: &#39;stop_sign&#39;,
- &#39;90&#39;: &#39;strawberry&#39;,
- &#39;91&#39;: &#39;sunflower&#39;,
- &#39;92&#39;: &#39;tick&#39;,
- &#39;93&#39;: &#39;trilobite&#39;,
- &#39;94&#39;: &#39;umbrella&#39;,
- &#39;95&#39;: &#39;watch&#39;,
- &#39;96&#39;: &#39;water_lilly&#39;,
- &#39;97&#39;: &#39;wheelchair&#39;,
- &#39;98&#39;: &#39;wild_cat&#39;,
- &#39;99&#39;: &#39;windsor_chair&#39;,
- &#39;100&#39;: &#39;wrench&#39;,
- &#39;101&#39;: &#39;yin_yang&#39;}</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Visualize some examples</span>
@@ -15203,7 +15036,7 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">testing</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">resnet50</span><span class="p">()</span>
@@ -15418,38 +15251,14 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Identity</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">x</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Encoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Encoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">()</span>
-        
-        <span class="c1"># Replace the fc layer with an Identity function</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">Identity</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">()</span>        
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>     
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   
@@ -15466,24 +15275,22 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Projection</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">in_features</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Projection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">hidden_dim</span> <span class="o">=</span> <span class="n">hidden_dim</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">=</span> <span class="n">input_dim</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_features</span> <span class="o">=</span> <span class="n">in_features</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="o">=</span> <span class="n">output_dim</span>
         
         <span class="c1"># Add mlp projection head</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -15523,15 +15330,15 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ContrastiveLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Vanilla Contrastive loss, also called InfoNceLoss as in SimCLR paper</span>
+<span class="sd">    Contrastive loss, based on nt_xent_loss</span>
 <span class="sd">    """</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ContrastiveLoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_1</span><span class="p">,</span> <span class="n">out_2</span><span class="p">,</span> <span class="n">temperature</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">out_1</span><span class="p">,</span> <span class="n">out_2</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -15548,7 +15355,7 @@ class="
         <span class="n">pos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">out_1</span> <span class="o">*</span> <span class="n">out_2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">)</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">pos</span><span class="p">,</span> <span class="n">pos</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pos</span> <span class="o">/</span> <span class="n">neg</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pos</span> <span class="o">/</span> <span class="n">neg</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">loss</span>
 </pre></div>
 
@@ -15562,72 +15369,70 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SimCLR</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningModule</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">weight_decay</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">save_hyperparameters</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">temperature</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'The temperature must be a positive float!'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># class SimCLR_pl(pl.LightningModule):</span>
+<span class="c1">#     def __init__(self, batch_size, hidden_dim, input_dim, output_dim, lr, temperature, weight_decay, max_epochs=500, **kwargs):</span>
+<span class="c1">#         super(SimCLR_pl, self).__init__()</span>
+       
+<span class="c1">#         self.save_hyperparameters()</span>
+<span class="c1">#         assert self.hparams.temperature &gt; 0.0, 'The temperature must be a positive float!'</span>
         
-        <span class="c1"># Base/backbone model f(x) -&gt; h</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="p">()</span>  <span class="c1"># Output of last linear layer</span>
+<span class="c1">#         # Base/backbone model f(x) -&gt; h</span>
+<span class="c1">#         self.encoder = Encoder()  # Output of last linear layer</span>
                 
-        <span class="c1"># The MLP/projection g(h) -&gt; z</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">Projection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">output_dim</span><span class="p">)</span>
+<span class="c1">#         # The MLP/projection g(h) -&gt; z</span>
+<span class="c1">#         self.projection = Projection(self.hparams.hidden_dim, self.hparams.input_dim, self.hparams.output_dim)</span>
 
-        <span class="c1"># Loss ContrastiveLoss/nt_xent_loss</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">contrastive_loss</span> <span class="o">=</span> <span class="n">ContrastiveLoss</span><span class="p">()</span>
+<span class="c1">#         # Loss ContrastiveLoss/nt_xent_loss</span>
+<span class="c1">#         self.contrastive_loss = ContrastiveLoss()</span>
 
-    <span class="k">def</span> <span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
-                                <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span>
-                                <span class="n">weight_decay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">weight_decay</span><span class="p">)</span>
-        <span class="n">lr_scheduler</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingLR</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span>
-                                                            <span class="n">T_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">,</span>
-                                                            <span class="n">eta_min</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">lr</span><span class="o">/</span><span class="mi">50</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">optimizer</span><span class="p">],</span> <span class="p">[</span><span class="n">lr_scheduler</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">info_nce_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'train'</span><span class="p">):</span>
-        <span class="n">imgs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">batch</span>
-        <span class="n">imgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-        <span class="c1"># Encode all images</span>
-        <span class="n">feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">imgs</span><span class="p">)</span>
+<span class="c1">#     def configure_optimizers(self):</span>
+<span class="c1">#         param_groups = define_param_groups(self.projection, self.hparams.weight_decay, 'adam')</span>
+      
+<span class="c1">#         optimizer = optim.Adam(params=param_groups,</span>
+<span class="c1">#                                 lr=self.hparams.lr,</span>
+<span class="c1">#                                 weight_decay=self.hparams.weight_decay)        </span>
         
-        <span class="c1"># Calculate cosine similarity</span>
-        <span class="n">cos_sim</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cosine_similarity</span><span class="p">(</span><span class="n">feats</span><span class="p">[:,</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">feats</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Mask out cosine similarity to itself</span>
-        <span class="n">self_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">cos_sim</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">cos_sim</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">cos_sim</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">self_mask</span><span class="p">,</span> <span class="o">-</span><span class="mf">9e15</span><span class="p">)</span>
-        <span class="c1"># Find positive example -&gt; batch_size//2 away from the original example</span>
-        <span class="n">pos_mask</span> <span class="o">=</span> <span class="n">self_mask</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">shifts</span><span class="o">=</span><span class="n">cos_sim</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="c1"># InfoNCE loss</span>
-        <span class="n">cos_sim</span> <span class="o">=</span> <span class="n">cos_sim</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="o">.</span><span class="n">temperature</span>
-        <span class="n">nll</span> <span class="o">=</span> <span class="o">-</span><span class="n">cos_sim</span><span class="p">[</span><span class="n">pos_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">cos_sim</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">nll</span> <span class="o">=</span> <span class="n">nll</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1">#         lr_scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=10, T_mult=self.hparams.max_epochs, eta_min=self.hparams.lr/50)</span>
+      
+<span class="c1">#         print(f'Optimizer Adam, '</span>
+<span class="c1">#               f'Learning Rate {self.hparams.lr}, '</span>
+<span class="c1">#               f'Effective batch size {self.hparams.batch_size * 5}')</span>
 
-        <span class="c1"># Logging loss</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mode</span><span class="o">+</span><span class="s1">'_loss'</span><span class="p">,</span> <span class="n">nll</span><span class="p">)</span>
-        <span class="c1"># Get ranking position of positive example</span>
-        <span class="n">comb_sim</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">cos_sim</span><span class="p">[</span><span class="n">pos_mask</span><span class="p">][:,</span><span class="kc">None</span><span class="p">],</span>  <span class="c1"># First position positive example</span>
-                              <span class="n">cos_sim</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">pos_mask</span><span class="p">,</span> <span class="o">-</span><span class="mf">9e15</span><span class="p">)],</span>
-                             <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">sim_argsort</span> <span class="o">=</span> <span class="n">comb_sim</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Logging ranking metrics</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mode</span><span class="o">+</span><span class="s1">'_acc_top1'</span><span class="p">,</span> <span class="p">(</span><span class="n">sim_argsort</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mode</span><span class="o">+</span><span class="s1">'_acc_top5'</span><span class="p">,</span> <span class="p">(</span><span class="n">sim_argsort</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mode</span><span class="o">+</span><span class="s1">'_acc_mean_pos'</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">sim_argsort</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="c1">#         return optimizer</span>
+    
+<span class="c1">#     def training_step(self, batch, batch_idx):</span>
+<span class="c1">#         loss = self._shared_eval_step(batch, batch_idx)</span>
+<span class="c1">#         self.log('Contrastive loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)</span>
+<span class="c1">#         return loss</span>
 
-        <span class="k">return</span> <span class="n">nll</span>
+<span class="c1">#     def validation_step(self, batch, batch_idx):</span>
+<span class="c1">#         loss = self._shared_eval_step(batch, batch_idx)</span>
 
-    <span class="k">def</span> <span class="nf">training_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_nce_loss</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'train'</span><span class="p">)</span>
+<span class="c1">#         result = pl.EvalResult(checkpoint_on=loss)</span>
+<span class="c1">#         result.log('avg_val_loss', loss)</span>
+<span class="c1">#         return result</span>
+    
+<span class="c1">#     def _shared_eval_step(self, batch, batch_idx):     </span>
+<span class="c1">#         (img1, img2), y = batch</span>
+      
+<span class="c1">#         # ENCODE</span>
+<span class="c1">#         # encode -&gt; representations</span>
+<span class="c1">#         # (b, 3, 32, 32) -&gt; (b, 2048, 2, 2)</span>
+<span class="c1">#         h1 = self.encoder(img1)</span>
+<span class="c1">#         h2 = self.encoder(img2)</span>
 
-    <span class="k">def</span> <span class="nf">validation_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">info_nce_loss</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'valid'</span><span class="p">)</span>
+<span class="c1">#         # PROJECT</span>
+<span class="c1">#         # img -&gt; E -&gt; h -&gt; || -&gt; z</span>
+<span class="c1">#         # (b, 2048, 2, 2) -&gt; (b, 128)</span>
+<span class="c1">#         z1 = self.projection(h1)</span>
+<span class="c1">#         z2 = self.projection(h2)</span>
+
+<span class="c1">#         loss = self.contrastive_loss(z1, z2, self.hparams.temperature)</span>
+
+<span class="c1">#         return loss</span>
 </pre></div>
 
      </div>
@@ -15640,37 +15445,246 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train_simclr</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">default_root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CHECKPOINT_PATH</span><span class="p">,</span> <span class="s1">'simclr'</span><span class="p">),</span>
-                         <span class="n">accelerator</span><span class="o">=</span><span class="s1">'gpu'</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'cuda'</span><span class="p">)</span> <span class="k">else</span> <span class="s1">'cpu'</span><span class="p">,</span>
-                         <span class="n">devices</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                         <span class="n">max_epochs</span><span class="o">=</span><span class="n">max_epochs</span><span class="p">,</span>
-                         <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">save_weights_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'max'</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="s1">'valid_acc_top5'</span><span class="p">),</span> <span class="n">LearningRateMonitor</span><span class="p">(</span><span class="s1">'epoch'</span><span class="p">)])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># def train_simclr(batch_size, max_epochs=500, **kwargs): </span>
+<span class="c1">#     resume_from_checkpoint = False</span>
+<span class="c1">#     checkpoint_path = './SimCLR_ResNet18_adam_.ckpt'</span>
     
-    <span class="n">trainer</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">_default_hp_metric</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Optional logging argument that we don't need</span>
+<span class="c1">#     # Check whether pretrained model exists. If yes, load it and skip training</span>
+<span class="c1">#     filename = os.path.join(CHECKPOINT_PATH, 'SimCLR_ResNet18_adam_')</span>
+<span class="c1">#     save_name = filename + '.ckpt'</span>
 
-    <span class="c1"># Check whether pretrained model exists. If yes, load it and skip training</span>
-    <span class="n">pretrained_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CHECKPOINT_PATH</span><span class="p">,</span> <span class="s1">'simclr.ckpt'</span><span class="p">)</span>
+<span class="c1">#     accumulator = GradientAccumulationScheduler(scheduling={0: 5})</span>
+<span class="c1">#     checkpoint_callback = ModelCheckpoint(filename=filename,</span>
+<span class="c1">#                                           dirpath=os.path.join(CHECKPOINT_PATH, 'simclr'),</span>
+<span class="c1">#                                           save_last=True,</span>
+<span class="c1">#                                           save_top_k=2,</span>
+<span class="c1">#                                           monitor='Contrastive loss_epoch',</span>
+<span class="c1">#                                           mode='min')</span>
+           
+<span class="c1">#     # Dataloaders</span>
+<span class="c1">#     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=NUM_WORKERS)</span>
+<span class="c1">#     valid_loader = DataLoader(valid_data, batch_size=batch_size, shuffle=True, num_workers=NUM_WORKERS)</span>
+
+<span class="c1">#     data_loaders = {</span>
+<span class="c1">#         'train': train_loader,</span>
+<span class="c1">#         'valid': valid_loader</span>
+<span class="c1">#     }</span>
     
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pretrained_filename</span><span class="p">):</span>        
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Found pretrained model at </span><span class="si">{</span><span class="n">pretrained_filename</span><span class="si">}</span><span class="s1">, loading...'</span><span class="p">)</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">SimCLR</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">pretrained_filename</span><span class="p">)</span> <span class="c1"># Automatically loads the model with the saved hyperparameters</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Dataloaders</span>
-        <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">NUM_WORKERS</span><span class="p">)</span>
-        <span class="n">valid_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">NUM_WORKERS</span><span class="p">)</span>
-        <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">NUM_WORKERS</span><span class="p">)</span>
+<span class="c1">#     if resume_from_checkpoint:</span>
+<span class="c1">#         trainer = pl.Trainer(default_root_dir=os.path.join(CHECKPOINT_PATH, 'simclr'),</span>
+<span class="c1">#                              callbacks=[accumulator, checkpoint_callback, LearningRateMonitor('epoch')],</span>
+<span class="c1">#                              accelerator='gpu' if str(device).startswith('cuda') else 'cpu',</span>
+<span class="c1">#                              devices=1,</span>
+<span class="c1">#                              num_sanity_val_steps=0,</span>
+<span class="c1">#                              max_epochs=max_epochs,</span>
+<span class="c1">#                              resume_from_checkpoint=checkpoint_path)</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         trainer = pl.Trainer(default_root_dir=os.path.join(CHECKPOINT_PATH, 'simclr'),</span>
+<span class="c1">#                              callbacks=[accumulator, checkpoint_callback, LearningRateMonitor('epoch')],</span>
+<span class="c1">#                              accelerator='gpu' if str(device).startswith('cuda') else 'cpu',</span>
+<span class="c1">#                              devices=1,</span>
+<span class="c1">#                              num_sanity_val_steps=0,</span>
+<span class="c1">#                              max_epochs=max_epochs)</span>
+    
+<span class="c1">#     pl.seed_everything(42) # To be reproducable</span>
+<span class="c1">#     model = SimCLR_pl(batch_size=batch_size, max_epochs=max_epochs, **kwargs)</span>
+<span class="c1">#     trainer.fit(model, train_dataloaders=train_loader, val_dataloaders=valid_loader)   </span>
+    
+<span class="c1">#     trainer.save_checkpoint(save_name)</span>
+
+<span class="c1">#     return model</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># torch.set_float32_matmul_precision('medium')</span>
+<span class="c1"># simclr_model = train_simclr(batch_size=64,</span>
+<span class="c1">#                             max_epochs=100,</span>
+<span class="c1">#                             hidden_dim=128, </span>
+<span class="c1">#                             input_dim=2048, </span>
+<span class="c1">#                             output_dim=128,   </span>
+<span class="c1">#                             lr=5e-4,</span>
+<span class="c1">#                             temperature=0.07,</span>
+<span class="c1">#                             weight_decay=1e-4)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># # Start tensorboard.</span>
+<span class="c1"># %load_ext tensorboard</span>
+<span class="c1"># %tensorboard --logdir ./saved_models/simclr/lightning_logs/</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SimCLR</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    We opt for simplicity and adopt the commonly used ResNet (He et al., 2016) to obtain hi = f(x ̃i) = ResNet(x ̃i) where hi ∈ Rd is the output after the average pooling layer.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SimCLR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_dim</span> <span class="o">=</span> <span class="n">hidden_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="o">=</span> <span class="n">output_dim</span>
+
+        <span class="c1"># Base/backbone model f(x) -&gt; h</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># Output of last linear layer</span>
+
+        <span class="n">in_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">in_features</span>  <span class="c1"># get dimensions of fc layer        </span>
         
-        <span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># To be reproducable</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">SimCLR</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="n">max_epochs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'Fit the model'</span><span class="p">)</span>
-        <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_dataloaders</span><span class="o">=</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">val_dataloaders</span><span class="o">=</span><span class="n">valid_loader</span><span class="p">)</span>     
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'Create a check point after training the model'</span><span class="p">)</span>   
-        <span class="n">model</span> <span class="o">=</span> <span class="n">SimCLR</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span><span class="p">)</span> <span class="c1"># Load best checkpoint after training</span>
+        <span class="c1"># Replace the fc layer with an Identity function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+                
+        <span class="c1"># The MLP/projection g(h) -&gt; z</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">Projection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">in_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>     
+        <span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="n">batch</span>
+        <span class="c1"># move to GPU</span>
+        <span class="n">img1</span> <span class="o">=</span> <span class="n">img1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">img2</span> <span class="o">=</span> <span class="n">img2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
 
+        <span class="c1"># ENCODE</span>
+        <span class="c1"># encode -&gt; representations</span>
+        <span class="c1"># (b, 3, 32, 32) -&gt; (b, 2048, 2, 2)</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">img1</span><span class="p">)</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">img2</span><span class="p">)</span>
+
+        <span class="c1"># PROJECT</span>
+        <span class="c1"># img -&gt; E -&gt; h -&gt; || -&gt; z</span>
+        <span class="c1"># (b, 2048, 2, 2) -&gt; (b, 128)        </span>
+        <span class="n">z1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span>
+        <span class="n">z2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">z2</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">max_epochs</span><span class="p">,</span> <span class="n">data_loaders</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">use_cuda</span><span class="p">,</span> <span class="n">save_model_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""returns trained model"""</span>
+    <span class="c1"># initialize tracker for minimum validation loss</span>
+    <span class="n">valid_loss_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">Inf</span> 
+    
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># initialize variables to monitor training and validation loss</span>
+        <span class="n">train_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">valid_loss</span> <span class="o">=</span> <span class="mf">0.0</span>        
+        
+        <span class="c1">###################</span>
+        <span class="c1"># train the model #</span>
+        <span class="c1">###################</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loaders</span><span class="p">[</span><span class="s1">'train'</span><span class="p">]):</span>
+            <span class="c1"># Gets rid of the gradients from the last round</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+            <span class="c1"># find the loss and update the model parameters accordingly</span>
+            <span class="c1"># Feeds a batch through our model   </span>
+            <span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">z2</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+            <span class="n">h1</span> <span class="o">=</span> <span class="n">h1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">h2</span> <span class="o">=</span> <span class="n">h2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">z1</span> <span class="o">=</span> <span class="n">z1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">z2</span> <span class="o">=</span> <span class="n">z2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+            <span class="c1"># Computes the loss</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span> <span class="n">z2</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>            
+
+            <span class="c1"># Performs the backward step</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+            <span class="c1"># Updates the model</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+            <span class="c1"># record the average training loss, using something like</span>
+            <span class="n">train_loss</span> <span class="o">=</span> <span class="n">train_loss</span> <span class="o">+</span> <span class="p">((</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">batch_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="n">train_loss</span><span class="p">))</span>
+                        
+        <span class="c1">######################    </span>
+        <span class="c1"># validate the model #</span>
+        <span class="c1">######################</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loaders</span><span class="p">[</span><span class="s1">'valid'</span><span class="p">]):</span>
+            <span class="c1"># Gets rid of the gradients from the last round</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+            <span class="c1"># find the loss and update the model parameters accordingly</span>
+            <span class="c1"># Feeds a batch through our model                 </span>
+            <span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">z2</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+            <span class="n">h1</span> <span class="o">=</span> <span class="n">h1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">h2</span> <span class="o">=</span> <span class="n">h2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">z1</span> <span class="o">=</span> <span class="n">z1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">z2</span> <span class="o">=</span> <span class="n">z2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            
+            <span class="c1"># Computes the loss</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span> <span class="n">z2</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>            
+         
+            <span class="c1"># record the average validation loss, using something like</span>
+            <span class="c1"># valid_loss = valid_loss + ((1 / (batch_idx + 1)) * (loss.data - valid_loss))</span>
+            <span class="n">valid_loss</span> <span class="o">=</span> <span class="n">valid_loss</span> <span class="o">+</span> <span class="p">((</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">batch_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="n">valid_loss</span><span class="p">))</span>
+            
+        <span class="c1"># print training/validation statistics </span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'Epoch: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">Training Loss: </span><span class="si">{:.6f}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">Validation Loss: </span><span class="si">{:.6f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">epoch</span><span class="p">,</span> 
+            <span class="n">train_loss</span><span class="p">,</span>
+            <span class="n">valid_loss</span>
+            <span class="p">))</span>
+        
+        <span class="c1">## save the model if validation loss has decreased</span>
+        <span class="k">if</span> <span class="n">valid_loss</span> <span class="o">&lt;</span> <span class="n">valid_loss_min</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'Validation loss decreased (</span><span class="si">{:.6f}</span><span class="s1"> --&gt; </span><span class="si">{:.6f}</span><span class="s1">).  Saving model ...'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valid_loss_min</span><span class="p">,</span> <span class="n">valid_loss</span><span class="p">))</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">save_model_path</span><span class="p">)</span>
+            <span class="n">valid_loss_min</span> <span class="o">=</span> <span class="n">valid_loss</span>    
+
+    <span class="c1"># return trained model</span>
     <span class="k">return</span> <span class="n">model</span>
 </pre></div>
 
@@ -15684,16 +15698,47 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">set_float32_matmul_precision</span><span class="p">(</span><span class="s1">'medium'</span><span class="p">)</span>
-<span class="n">simclr_model</span> <span class="o">=</span> <span class="n">train_simclr</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
-                            <span class="n">max_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-                            <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
-                            <span class="n">lr</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">,</span>
-                            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
-                            <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span>
+<span class="n">max_epochs</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">input_dim</span><span class="o">=</span><span class="mi">2048</span>
+<span class="n">output_dim</span><span class="o">=</span><span class="mi">64</span>
+<span class="n">lr</span><span class="o">=</span><span class="mf">5e-4</span>
+<span class="n">temperature</span><span class="o">=</span><span class="mf">0.07</span>
+<span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CHECKPOINT_PATH</span><span class="p">,</span> <span class="s1">'SimCLR_ResNet18_adam_'</span><span class="p">)</span>
+<span class="n">save_model_path</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">'.ckpt'</span>
+
+<span class="c1"># check if CUDA is available</span>
+<span class="n">use_cuda</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+
+<span class="c1"># Dataloaders</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">data_loaders</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'train'</span><span class="p">:</span> <span class="n">train_loader</span><span class="p">,</span>
+    <span class="s1">'valid'</span><span class="p">:</span> <span class="n">valid_loader</span>
+    <span class="p">}</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SimCLR</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">param_groups</span> <span class="o">=</span> <span class="n">define_param_groups</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">projection</span><span class="p">,</span> <span class="n">weight_decay</span><span class="p">,</span> <span class="s1">'adam'</span><span class="p">)</span>
+      
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">param_groups</span><span class="p">,</span>
+                       <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span>
+                       <span class="n">weight_decay</span><span class="o">=</span><span class="n">weight_decay</span><span class="p">)</span>        
+
+
+<span class="c1"># Loss ContrastiveLoss/nt_xent_loss</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">ContrastiveLoss</span><span class="p">()</span>
+<span class="c1"># for batch_idx, batch in enumerate(data_loaders['train']):</span>
+<span class="c1">#     print(batch)</span>
+<span class="n">train</span><span class="p">(</span><span class="n">max_epochs</span><span class="p">,</span> <span class="n">data_loaders</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">use_cuda</span><span class="p">,</span> <span class="n">save_model_path</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15715,53 +15760,101 @@ class="
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>GPU available: True (cuda), used: True
-TPU available: False, using: 0 TPU cores
-IPU available: False, using: 0 IPUs
-HPU available: False, using: 0 HPUs
-Global seed set to 42
-c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter &#39;pretrained&#39; is deprecated since 0.13 and may be removed in the future, please use &#39;weights&#39; instead.
-  warnings.warn(
-c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for &#39;weights&#39; are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
-  warnings.warn(msg)
-LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">OutOfMemoryError</span>                          Traceback (most recent call last)
+Cell <span class="ansi-green-intense-fg ansi-bold">In[23], line 38</span>
+<span class="ansi-green-fg">     35</span> criterion = ContrastiveLoss()
+<span class="ansi-green-fg">     36</span> # for batch_idx, batch in enumerate(data_loaders[&#39;train&#39;]):
+<span class="ansi-green-fg">     37</span> #     print(batch)
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 38</span> train(max_epochs, data_loaders, model, optimizer, criterion, temperature, use_cuda, save_model_path)
 
-  | Name    | Type   | Params
------------------------------------
-0 | encoder | ResNet | 11.5 M
------------------------------------
-11.5 M    Trainable params
-0         Non-trainable params
-11.5 M    Total params
-46.019    Total estimated model params size (MB)
-</pre>
+Cell <span class="ansi-green-intense-fg ansi-bold">In[22], line 46</span>, in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-intense-fg ansi-bold">(max_epochs, data_loaders, model, optimizer, criterion, temperature, use_cuda, save_model_path)</span>
+<span class="ansi-green-fg">     42</span> model.eval()
+<span class="ansi-green-fg">     43</span> for batch_idx, batch in enumerate(data_loaders[&#39;valid&#39;]):
+<span class="ansi-green-fg">     44</span>     # find the loss and update the model parameters accordingly
+<span class="ansi-green-fg">     45</span>     # Feeds a batch through our model                 
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 46</span>     h1, h2, z1, z2 = model(batch)
+<span class="ansi-green-fg">     47</span>     h1 = h1.to(device)
+<span class="ansi-green-fg">     48</span>     h2 = h2.to(device)
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torch\nn\modules\module.py:1194</span>, in <span class="ansi-cyan-fg">Module._call_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, *input, **kwargs)</span>
+<span class="ansi-green-fg">   1190</span> # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+<span class="ansi-green-fg">   1191</span> # this function, and just call forward.
+<span class="ansi-green-fg">   1192</span> if not (self._backward_hooks or self._forward_hooks or self._forward_pre_hooks or _global_backward_hooks
+<span class="ansi-green-fg">   1193</span>         or _global_forward_hooks or _global_forward_pre_hooks):
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1194</span>     return forward_call(*input, **kwargs)
+<span class="ansi-green-fg">   1195</span> # Do not call functions when jit is used
+<span class="ansi-green-fg">   1196</span> full_backward_hooks, non_full_backward_hooks = [], []
+
+Cell <span class="ansi-green-intense-fg ansi-bold">In[21], line 34</span>, in <span class="ansi-cyan-fg">SimCLR.forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, batch)</span>
+<span class="ansi-green-fg">     30</span> # ENCODE
+<span class="ansi-green-fg">     31</span> # encode -&gt; representations
+<span class="ansi-green-fg">     32</span> # (b, 3, 32, 32) -&gt; (b, 2048, 2, 2)
+<span class="ansi-green-fg">     33</span> h1 = self.encoder(img1)
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 34</span> h2 = self.encoder(img2)
+<span class="ansi-green-fg">     36</span> # PROJECT
+<span class="ansi-green-fg">     37</span> # img -&gt; E -&gt; h -&gt; || -&gt; z
+<span class="ansi-green-fg">     38</span> # (b, 2048, 2, 2) -&gt; (b, 128)        
+<span class="ansi-green-fg">     39</span> z1 = self.projection(h1)
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torch\nn\modules\module.py:1194</span>, in <span class="ansi-cyan-fg">Module._call_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, *input, **kwargs)</span>
+<span class="ansi-green-fg">   1190</span> # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+<span class="ansi-green-fg">   1191</span> # this function, and just call forward.
+<span class="ansi-green-fg">   1192</span> if not (self._backward_hooks or self._forward_hooks or self._forward_pre_hooks or _global_backward_hooks
+<span class="ansi-green-fg">   1193</span>         or _global_forward_hooks or _global_forward_pre_hooks):
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1194</span>     return forward_call(*input, **kwargs)
+<span class="ansi-green-fg">   1195</span> # Do not call functions when jit is used
+<span class="ansi-green-fg">   1196</span> full_backward_hooks, non_full_backward_hooks = [], []
+
+Cell <span class="ansi-green-intense-fg ansi-bold">In[14], line 8</span>, in <span class="ansi-cyan-fg">Encoder.forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, x)</span>
+<span class="ansi-green-fg">      7</span> def forward(self, x):     
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 8</span>     x = self.model(x)   
+<span class="ansi-green-fg">      9</span>     return x
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torch\nn\modules\module.py:1194</span>, in <span class="ansi-cyan-fg">Module._call_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, *input, **kwargs)</span>
+<span class="ansi-green-fg">   1190</span> # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+<span class="ansi-green-fg">   1191</span> # this function, and just call forward.
+<span class="ansi-green-fg">   1192</span> if not (self._backward_hooks or self._forward_hooks or self._forward_pre_hooks or _global_backward_hooks
+<span class="ansi-green-fg">   1193</span>         or _global_forward_hooks or _global_forward_pre_hooks):
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1194</span>     return forward_call(*input, **kwargs)
+<span class="ansi-green-fg">   1195</span> # Do not call functions when jit is used
+<span class="ansi-green-fg">   1196</span> full_backward_hooks, non_full_backward_hooks = [], []
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torchvision\models\resnet.py:285</span>, in <span class="ansi-cyan-fg">ResNet.forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, x)</span>
+<span class="ansi-green-fg">    284</span> def forward(self, x: Tensor) -&gt; Tensor:
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 285</span>     return self._forward_impl(x)
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torchvision\models\resnet.py:268</span>, in <span class="ansi-cyan-fg">ResNet._forward_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, x)</span>
+<span class="ansi-green-fg">    266</span> def _forward_impl(self, x: Tensor) -&gt; Tensor:
+<span class="ansi-green-fg">    267</span>     # See note [TorchScript super()]
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 268</span>     x = self.conv1(x)
+<span class="ansi-green-fg">    269</span>     x = self.bn1(x)
+<span class="ansi-green-fg">    270</span>     x = self.relu(x)
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torch\nn\modules\module.py:1194</span>, in <span class="ansi-cyan-fg">Module._call_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, *input, **kwargs)</span>
+<span class="ansi-green-fg">   1190</span> # If we don&#39;t have any hooks, we want to skip the rest of the logic in
+<span class="ansi-green-fg">   1191</span> # this function, and just call forward.
+<span class="ansi-green-fg">   1192</span> if not (self._backward_hooks or self._forward_hooks or self._forward_pre_hooks or _global_backward_hooks
+<span class="ansi-green-fg">   1193</span>         or _global_forward_hooks or _global_forward_pre_hooks):
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1194</span>     return forward_call(*input, **kwargs)
+<span class="ansi-green-fg">   1195</span> # Do not call functions when jit is used
+<span class="ansi-green-fg">   1196</span> full_backward_hooks, non_full_backward_hooks = [], []
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torch\nn\modules\conv.py:463</span>, in <span class="ansi-cyan-fg">Conv2d.forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, input)</span>
+<span class="ansi-green-fg">    462</span> def forward(self, input: Tensor) -&gt; Tensor:
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 463</span>     return self._conv_forward(input, self.weight, self.bias)
+
+File <span class="ansi-green-intense-fg ansi-bold">c:\Users\james\anaconda3\envs\env_pytorch\lib\site-packages\torch\nn\modules\conv.py:459</span>, in <span class="ansi-cyan-fg">Conv2d._conv_forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, input, weight, bias)</span>
+<span class="ansi-green-fg">    455</span> if self.padding_mode != &#39;zeros&#39;:
+<span class="ansi-green-fg">    456</span>     return F.conv2d(F.pad(input, self._reversed_padding_repeated_twice, mode=self.padding_mode),
+<span class="ansi-green-fg">    457</span>                     weight, bias, self.stride,
+<span class="ansi-green-fg">    458</span>                     _pair(0), self.dilation, self.groups)
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 459</span> return F.conv2d(input, weight, bias, self.stride,
+<span class="ansi-green-fg">    460</span>                 self.padding, self.dilation, self.groups)
+
+<span class="ansi-red-intense-fg ansi-bold">OutOfMemoryError</span>: CUDA out of memory. Tried to allocate 196.00 MiB (GPU 0; 16.00 GiB total capacity; 14.70 GiB already allocated; 0 bytes free; 15.24 GiB reserved in total by PyTorch) If reserved memory is &gt;&gt; allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF</pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Fit the model
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Sanity Checking: 0it [00:00, ?it/s]</pre>
-</div>
-
 </div>
 
 </div>
@@ -15776,9 +15869,7 @@ LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Start tensorboard.</span>
-<span class="o">%</span><span class="k">load_ext</span> tensorboard
-<span class="o">%</span><span class="k">tensorboard</span> --logdir ./saved_models/simclr/lightning_logs/
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
